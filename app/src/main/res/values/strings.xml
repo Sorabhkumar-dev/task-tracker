@@ -1,0 +1,11 @@
+<resources>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="app_name">Task Tracker</string>
+    <string name="pick_date">Pick Date</string>
+    <string name="pick_time">Pick Time</string>
+    <string name="add_task">Add Task</string>
+    <string name="your_tasks">Your Tasks</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="currently_you_have_no_any_task">Currently you have no any Task!</string>
+</resources>
