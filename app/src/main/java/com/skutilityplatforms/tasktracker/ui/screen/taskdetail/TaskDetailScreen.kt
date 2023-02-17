@@ -12,14 +12,21 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
+import com.skutilityplatforms.tasktracker.data.data_classes.TaskInfo
+import com.skutilityplatforms.tasktracker.ui.utils.Util
 
 @Composable
-fun TaskDetailScreen(navController: NavController, viewModel: TaskDetailViewModel, taskId: Int?) {
-    TaskDetailScreenContent(navController = navController, viewModel = viewModel)
+fun TaskDetailScreen(viewModel: TaskDetailViewModel, taskId: Int?) {
+    taskId?.let {
+        viewModel.getTaskInfo(it)
+        viewModel.taskInfoState.value?.let { taskInfo ->
+            TaskDetailScreenContent(taskInfo)
+        }
+    }
 }
 
 @Composable
-fun TaskDetailScreenContent(navController: NavController, viewModel: TaskDetailViewModel) {
+fun TaskDetailScreenContent(taskInfo: TaskInfo) {
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (taskIcon, taskTitle, taskDescription, taskTiming) = createRefs()
         Icon(
@@ -32,26 +39,30 @@ fun TaskDetailScreenContent(navController: NavController, viewModel: TaskDetailV
                 height = Dimension.value(50.dp)
             })
 
-        Text(text = "", modifier = Modifier.constrainAs(taskTitle) {
+        Text(text = taskInfo.taskTitle, modifier = Modifier.constrainAs(taskTitle) {
             start.linkTo(taskIcon.end, 16.dp)
             top.linkTo(taskIcon.top)
             end.linkTo(parent.end, 16.dp)
             width = Dimension.fillToConstraints
         }, style = MaterialTheme.typography.subtitle1)
 
-        Text(text = "", modifier = Modifier.constrainAs(taskDescription) {
+        Text(text = taskInfo.taskDescription, modifier = Modifier.constrainAs(taskDescription) {
             start.linkTo(taskTitle.start)
             top.linkTo(taskTitle.bottom, 16.dp)
             end.linkTo(taskTitle.end)
             width = Dimension.fillToConstraints
         }, style = MaterialTheme.typography.body1)
 
-        Text(text = "", modifier = Modifier.constrainAs(taskTiming) {
-            start.linkTo(taskDescription.start)
-            top.linkTo(taskDescription.bottom, 16.dp)
-            end.linkTo(taskDescription.end)
-            width = Dimension.fillToConstraints
-        }, style = MaterialTheme.typography.caption)
+        Text(
+            text = Util.getFormattedDate(taskInfo.taskTiming),
+            modifier = Modifier.constrainAs(taskTiming) {
+                start.linkTo(taskDescription.start)
+                top.linkTo(taskDescription.bottom, 16.dp)
+                end.linkTo(taskDescription.end)
+                width = Dimension.fillToConstraints
+            },
+            style = MaterialTheme.typography.caption
+        )
 
     }
 }

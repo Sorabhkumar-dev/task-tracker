@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 interface TaskDao {
 
     @Insert
-    fun addTask(taskInfo: TaskInfo)
+    suspend fun addTask(taskInfo: TaskInfo)
 
     @Delete
-    fun deleteTask(taskInfo: TaskInfo)
+    suspend fun deleteTask(taskInfo: TaskInfo)
 
     @Query("Select * From TaskInfo where task_timing > :timeMillis ")
     fun getAllTask(timeMillis:Long):Flow<List<TaskInfo>>
@@ -20,5 +20,5 @@ interface TaskDao {
     fun getTaskInfo(taskId:Int):Flow<TaskInfo>
     
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateTask(taskInfo: TaskInfo)
+    suspend fun updateTask(taskInfo: TaskInfo)
 }

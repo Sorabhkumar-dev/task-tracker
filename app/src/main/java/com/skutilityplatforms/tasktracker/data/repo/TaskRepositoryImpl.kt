@@ -7,14 +7,14 @@ import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao):TaskRepository {
 
-    override fun addTask(taskInfo: TaskInfo) = taskDao.addTask(taskInfo)
+    override suspend fun addTask(taskInfo: TaskInfo) = taskDao.addTask(taskInfo)
 
-    override fun deleteTask(taskInfo: TaskInfo) = taskDao.deleteTask(taskInfo)
+    override suspend fun deleteTask(taskInfo: TaskInfo) = taskDao.deleteTask(taskInfo)
 
-    override fun updateTask(taskInfo: TaskInfo) = taskDao.updateTask(taskInfo)
+    override suspend fun updateTask(taskInfo: TaskInfo) = taskDao.updateTask(taskInfo)
 
-    override fun getTaskInfo(taskId:Int) = taskDao.getTaskInfo(taskId)
+    override suspend fun getTaskInfo(taskId:Int) = taskDao.getTaskInfo(taskId)
 
-    override fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>> = taskDao.getAllTask(timeMillis)
+    override suspend fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>> = taskDao.getAllTask(timeMillis)
 
 }

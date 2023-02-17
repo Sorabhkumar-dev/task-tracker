@@ -1,5 +1,6 @@
 package com.skutilityplatforms.tasktracker.ui.screen.task
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,8 @@ import com.skutilityplatforms.tasktracker.data.data_classes.TaskInfo
 import com.skutilityplatforms.tasktracker.ui.EmptyScreen
 import com.skutilityplatforms.tasktracker.ui.TaskCard
 import com.skutilityplatforms.tasktracker.ui.navigation.ScreenNavigator
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 
 @Composable
@@ -29,7 +32,7 @@ fun TasksScreen(navController: NavController, viewModel: TaskViewModel) {
             Icon(imageVector = Icons.Default.Edit, contentDescription = "edit icon")
         }
     }) {
-        val tasks = viewModel.tasks.collectAsState(emptyList())
+        val tasks = viewModel.tasks
 
         if (tasks.value.isEmpty())
             EmptyScreen(
@@ -41,13 +44,13 @@ fun TasksScreen(navController: NavController, viewModel: TaskViewModel) {
             TaskScreenContent(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(it), tasks = emptyList()
+                    .padding(it), navController = navController, tasks = tasks.value
             )
     }
 }
 
 @Composable
-fun TaskScreenContent(modifier: Modifier, tasks: List<TaskInfo>) {
+fun TaskScreenContent(modifier: Modifier, navController: NavController, tasks: List<TaskInfo>) {
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -55,14 +58,25 @@ fun TaskScreenContent(modifier: Modifier, tasks: List<TaskInfo>) {
         item {
             Text(
                 text = stringResource(id = R.string.your_tasks),
-                style = MaterialTheme.typography.subtitle1
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                style = MaterialTheme.typography.h6
             )
         }
         items(tasks) { task ->
             TaskCard(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .clickable {
+                        navController.navigate(
+                            ScreenNavigator.TaskDetailScreen.name.plus(
+                                "/${URLEncoder.encode(
+                                    "${task.taskId}",
+                                    StandardCharsets.UTF_8.toString()
+                                )
+                            }")
+                        )
+                    },
                 taskInfo = task
             )
         }

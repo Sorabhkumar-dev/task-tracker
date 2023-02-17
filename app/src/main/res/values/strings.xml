@@ -7,5 +7,6 @@
     <string name="add_task">Add Task</string>
     <string name="your_tasks">Your Tasks</string>
     <string name="add_new_task">Add New Task</string>
+    <string name="something_went_wrong">Something went wrong!</string>
     <string name="currently_you_have_no_any_task">Currently you have no any Task!</string>
 </resources>
