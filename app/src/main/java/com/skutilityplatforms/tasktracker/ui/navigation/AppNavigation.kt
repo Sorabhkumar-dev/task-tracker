@@ -2,9 +2,11 @@ package com.skutilityplatforms.tasktracker.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.skutilityplatforms.tasktracker.data.utility.Constants
 import com.skutilityplatforms.tasktracker.ui.screen.add_task.AddTaskScreen
 import com.skutilityplatforms.tasktracker.ui.screen.add_task.AddTaskViewModel
@@ -28,12 +30,11 @@ fun AppNavigation() {
             AddTaskScreen(navController = navController, viewModel = viewModel)
         }
 
-        composable(ScreenNavigator.TaskDetailScreen.name.plus("/${Constants.TASK_ID}")) { backStackEntry ->
+        composable(ScreenNavigator.TaskDetailScreen.name.plus("/taskId")) { backStackEntry ->
             val viewModel: TaskDetailViewModel = hiltViewModel()
             TaskDetailScreen(
-                navController = navController,
                 viewModel = viewModel,
-                taskId = backStackEntry.arguments?.getInt(Constants.TASK_ID)
+                taskId = backStackEntry.arguments?.getString("taskId")?.toInt()
             )
         }
     }

@@ -8,11 +8,13 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -38,16 +40,17 @@ fun TaskCard(
                     top.linkTo(parent.top, 16.dp)
                     end.linkTo(taskIcon.start, 10.dp)
                     width = Dimension.fillToConstraints
-                }, style = MaterialTheme.typography.subtitle1
+                }, fontWeight = FontWeight.ExtraBold, style = MaterialTheme.typography.subtitle1
             )
 
             Text(
                 text = taskInfo.taskDescription,
                 modifier = Modifier.constrainAs(taskDescription) {
                     start.linkTo(taskTitle.start)
-                    top.linkTo(taskTitle.bottom, 16.dp)
+                    top.linkTo(taskTitle.bottom, 8.dp)
                     end.linkTo(taskIcon.start, 10.dp)
-                }, style = MaterialTheme.typography.body2
+                    width = Dimension.fillToConstraints
+                }, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.body1
             )
 
             Text(
@@ -55,11 +58,13 @@ fun TaskCard(
                 modifier = Modifier.constrainAs(taskTiming) {
                     start.linkTo(taskDescription.start)
                     top.linkTo(taskDescription.bottom, 8.dp)
-                }, style = MaterialTheme.typography.caption
+                    bottom.linkTo(parent.bottom, 16.dp)
+                    width = Dimension.fillToConstraints
+                }, fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.body2
             )
 
             Icon(
-                imageVector = Icons.Default.Notifications,
+                imageVector = Icons.Outlined.Notifications,
                 contentDescription = "notification icon",
                 modifier = Modifier.constrainAs(taskIcon) {
                     top.linkTo(parent.top)

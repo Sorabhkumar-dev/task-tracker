@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.skutilityplatforms.tasktracker.R
+import com.skutilityplatforms.tasktracker.ui.utils.Util
 import java.util.*
 
 @Composable
@@ -113,7 +114,10 @@ fun AddTaskScreen(navController: NavController, viewModel: AddTaskViewModel) {
         )
 
         Button(
-            onClick = { /*TODO*/ }, modifier = Modifier
+            onClick = {
+                if (!viewModel.saveTask())
+                    Util.showToast(context, context.getString(R.string.something_went_wrong))
+            }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, top = 80.dp, end = 16.dp)
                 .clip(MaterialTheme.shapes.medium),

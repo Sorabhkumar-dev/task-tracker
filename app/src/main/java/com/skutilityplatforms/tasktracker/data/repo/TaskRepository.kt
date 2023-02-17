@@ -5,13 +5,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
 
-    fun addTask(taskInfo: TaskInfo)
+    suspend fun addTask(taskInfo: TaskInfo)
 
-    fun deleteTask(taskInfo: TaskInfo)
+    suspend fun deleteTask(taskInfo: TaskInfo)
 
-    fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>>
+    suspend fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>>
 
-    fun getTaskInfo(taskId: Int): Flow<TaskInfo>
+    suspend fun getTaskInfo(taskId: Int): Flow<TaskInfo>
 
-    fun updateTask(taskInfo: TaskInfo)
+    suspend fun updateTask(taskInfo: TaskInfo)
 }
