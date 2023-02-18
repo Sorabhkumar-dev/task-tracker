@@ -10,6 +10,10 @@
     <string name="add_new_task">Add New Task</string>
     <string name="task_reminder">Task Reminder</string>
     <string name="you_have_new_task_to_do">You have new task to do!</string>
+    <string name="please_give_alarm_permission_to_add_task">Please give alarm permission to add task!</string>
+    <string name="please_give_notification_permission_to_notify_task">Please give notification permission to notify task!</string>
+    <string name="you_permanently_denied_the_alarm_permission_please_long_press_on_app_and_go_into_setting_to_enable_it">You Permanently denied the Alarm permission please long press on app and go into setting to enable it!</string>
+    <string name="you_permanently_denied_the_notification_permission_please_long_press_on_app_and_go_into_setting_to_enable_it">You Permanently denied the Notification permission please long press on app and go into setting to enable it!</string>
     <string name="used_to_reminder_about_current_task_to_user">Used to remind current task to user</string>
     <string name="something_went_wrong">Something went wrong!</string>
     <string name="task_scheduled_successfully">Task Scheduled successfully at %s</string>

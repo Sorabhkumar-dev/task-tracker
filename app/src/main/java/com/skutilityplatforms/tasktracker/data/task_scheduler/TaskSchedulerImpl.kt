@@ -16,8 +16,6 @@ class TaskSchedulerImpl @Inject constructor(
     private val context: Context
 ) : TaskScheduler {
 
-
-    @SuppressLint("MissingPermission")
     override fun scheduleTask(taskInfo: TaskInfo) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(Constants.TASK_ID, taskInfo.taskId)

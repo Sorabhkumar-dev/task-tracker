@@ -1,5 +1,6 @@
 package com.skutilityplatforms.tasktracker.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -79,7 +81,10 @@ fun TaskCard(
 }
 
 @Composable
-fun EmptyScreen(modifier: Modifier) {
+fun EmptyScreen(
+    modifier: Modifier,
+    @StringRes text: Int = R.string.currently_you_have_no_any_task
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -92,9 +97,12 @@ fun EmptyScreen(modifier: Modifier) {
         )
 
         Text(
-            text = stringResource(id = R.string.currently_you_have_no_any_task),
-            modifier = Modifier.padding(top = 16.dp),
-            style = MaterialTheme.typography.h6
+            text = stringResource(id = text),
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .padding(horizontal = 16.dp),
+            style = MaterialTheme.typography.h6,
+            textAlign = TextAlign.Center
         )
     }
 }
