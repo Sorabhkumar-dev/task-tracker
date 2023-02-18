@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.widget.DatePicker
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -117,6 +115,14 @@ fun AddTaskScreen(navController: NavController, viewModel: AddTaskViewModel) {
             onClick = {
                 if (!viewModel.saveTask())
                     Util.showToast(context, context.getString(R.string.something_went_wrong))
+                else
+                    Util.showToast(
+                        context,
+                        context.getString(
+                            R.string.task_scheduled_successfully,
+                            Util.getFormattedDate(viewModel.calenderState.value.time)
+                        )
+                    )
             }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, top = 80.dp, end = 16.dp)

@@ -1,4 +1,5 @@
 <resources>
+    <string name="now">Now</string>
     <string name="enter_title">Enter Title</string>
     <string name="enter_description">Enter Description</string>
     <string name="app_name">Task Tracker</string>
@@ -7,6 +8,10 @@
     <string name="add_task">Add Task</string>
     <string name="your_tasks">Your Tasks</string>
     <string name="add_new_task">Add New Task</string>
+    <string name="task_reminder">Task Reminder</string>
+    <string name="you_have_new_task_to_do">You have new task to do!</string>
+    <string name="used_to_reminder_about_current_task_to_user">Used to remind current task to user</string>
     <string name="something_went_wrong">Something went wrong!</string>
+    <string name="task_scheduled_successfully">Task Scheduled successfully at %s</string>
     <string name="currently_you_have_no_any_task">Currently you have no any Task!</string>
 </resources>

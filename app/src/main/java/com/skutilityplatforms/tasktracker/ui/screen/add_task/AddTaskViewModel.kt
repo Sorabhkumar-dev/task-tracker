@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skutilityplatforms.tasktracker.data.data_classes.TaskInfo
 import com.skutilityplatforms.tasktracker.data.repo.TaskRepository
+import com.skutilityplatforms.tasktracker.data.task_scheduler.TaskScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -13,7 +14,10 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTaskViewModel @Inject constructor(private val taskRepository: TaskRepository) :
+class AddTaskViewModel @Inject constructor(
+    private val taskRepository: TaskRepository,
+    private val taskScheduler: TaskScheduler
+) :
     ViewModel() {
     private val calender = Calendar.getInstance()
 
@@ -54,14 +58,9 @@ class AddTaskViewModel @Inject constructor(private val taskRepository: TaskRepos
             false
         else {
             viewModelScope.launch {
-                taskRepository.addTask(
-                    TaskInfo(
-                        0,
-                        taskTitle.value,
-                        taskDescription.value,
-                        calender.time
-                    )
-                )
+                val task = TaskInfo(0, taskTitle.value, taskDescription.value, calender.time)
+                taskRepository.addTask(task)
+                taskScheduler.scheduleTask(task)
             }
             true
         }
