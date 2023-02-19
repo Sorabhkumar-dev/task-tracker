@@ -15,6 +15,8 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao):TaskR
 
     override suspend fun getTaskInfo(taskId:Int) = taskDao.getTaskInfo(taskId)
 
+    override suspend fun getNextTask(timeMillis: Long): Flow<TaskInfo?>  = taskDao.getNextTask(timeMillis)
+
     override suspend fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>> = taskDao.getAllTask(timeMillis)
 
 }

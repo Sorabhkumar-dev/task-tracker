@@ -13,8 +13,11 @@ interface TaskDao {
     @Delete
     suspend fun deleteTask(taskInfo: TaskInfo)
 
-    @Query("Select * From TaskInfo where task_timing > :timeMillis ")
+    @Query("Select * From TaskInfo where task_timing > :timeMillis order by task_timing")
     fun getAllTask(timeMillis:Long):Flow<List<TaskInfo>>
+
+    @Query("Select * From TaskInfo where task_timing > :timeMillis order by task_timing limit 1 ")
+    fun getNextTask(timeMillis:Long):Flow<TaskInfo?>
 
     @Query("Select * from TaskInfo where taskId = :taskId")
     fun getTaskInfo(taskId:Int):Flow<TaskInfo>

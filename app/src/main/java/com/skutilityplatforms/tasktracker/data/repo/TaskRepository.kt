@@ -11,7 +11,9 @@ interface TaskRepository {
 
     suspend fun getAllTask(timeMillis: Long): Flow<List<TaskInfo>>
 
-    suspend fun getTaskInfo(taskId: Int): Flow<TaskInfo>
+    suspend fun getNextTask(timeMillis: Long):Flow<TaskInfo?>
+
+    suspend fun getTaskInfo(taskId: Int): Flow<TaskInfo?>
 
     suspend fun updateTask(taskInfo: TaskInfo)
 }
