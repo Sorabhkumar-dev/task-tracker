@@ -9,6 +9,7 @@
     <string name="your_tasks">Your Tasks</string>
     <string name="add_new_task">Add New Task</string>
     <string name="task_reminder">Task Reminder</string>
+    <string name="date_format">1X JXX 20XX</string>
     <string name="you_have_new_task_to_do">You have new task to do!</string>
     <string name="please_give_alarm_permission_to_add_task">Please give alarm permission to add task!</string>
     <string name="please_give_notification_permission_to_notify_task">Please give notification permission to notify task!</string>

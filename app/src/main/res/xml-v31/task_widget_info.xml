@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/used_to_reminder_about_current_task_to_user"
+    android:initialLayout="@layout/task_widget"
+    android:previewLayout="@layout/task_widget"
+    android:minWidth="200dp"
+    android:minHeight="100dp"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:previewImage="@drawable/ic_reminder"
+    android:targetCellWidth="3"
+    android:targetCellHeight="1" />
