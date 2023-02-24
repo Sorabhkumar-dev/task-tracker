@@ -135,7 +135,7 @@ private fun AddTaskScreenContent(
                     modifier = Modifier
                         .size(24.dp)
                         .clickable { showDatePicker(context, viewModel) },
-                    tint = MaterialTheme.colors.onSurface
+                    tint = MaterialTheme.colors.secondary
                 )
             }
         )
@@ -159,7 +159,7 @@ private fun AddTaskScreenContent(
                     modifier = Modifier
                         .size(24.dp)
                         .clickable { showTimePicker(context, viewModel) },
-                    tint = MaterialTheme.colors.onSurface
+                    tint = MaterialTheme.colors.secondary
                 )
             }
         )
@@ -178,7 +178,6 @@ private fun AddTaskScreenContent(
                 modifier = Modifier
                     .size(24.dp)
                     .clickable { showTimePicker(context, viewModel) },
-                tint = MaterialTheme.colors.onSurface
             )
 
             Text(
