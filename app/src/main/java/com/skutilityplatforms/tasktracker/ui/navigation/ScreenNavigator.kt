@@ -1,7 +1,11 @@
 package com.skutilityplatforms.tasktracker.ui.navigation
 
 enum class ScreenNavigator {
-    TaskScreen,
+//    root navigation
+    CurrentTaskScreen,
+    DailyTaskScreen,
+    NoteScreen,
+
     AddTaskScreen,
     TaskDetailScreen
 }

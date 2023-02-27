@@ -3,12 +3,9 @@ package com.skutilityplatforms.tasktracker.ui.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import com.skutilityplatforms.tasktracker.ui.navigation.AppNavigation
+import androidx.navigation.compose.rememberNavController
+import com.skutilityplatforms.tasktracker.ui.screen.home.HomeScreen
 import com.skutilityplatforms.tasktracker.ui.theme.TaskTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,16 +13,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { MyApp { AppNavigation() } }
+        setContent { MyApp { HomeScreen(rememberNavController()) } }
     }
 
     @Composable
     private fun MyApp(content: @Composable () -> Unit = {}) {
         TaskTrackerTheme {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colors.background
-            ) { content() }
+            content()
         }
     }
 }

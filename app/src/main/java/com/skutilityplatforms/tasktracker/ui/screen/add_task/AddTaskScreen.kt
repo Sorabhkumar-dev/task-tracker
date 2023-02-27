@@ -175,9 +175,7 @@ private fun AddTaskScreenContent(
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { showTimePicker(context, viewModel) },
+                modifier = Modifier.size(24.dp),
             )
 
             Text(

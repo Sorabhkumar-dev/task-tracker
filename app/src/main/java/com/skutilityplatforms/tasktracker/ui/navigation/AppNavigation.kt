@@ -2,27 +2,40 @@ package com.skutilityplatforms.tasktracker.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavType
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.skutilityplatforms.tasktracker.data.utility.Constants
 import com.skutilityplatforms.tasktracker.ui.screen.add_task.AddTaskScreen
 import com.skutilityplatforms.tasktracker.ui.screen.add_task.AddTaskViewModel
+import com.skutilityplatforms.tasktracker.ui.screen.daily_tasks.DailyTaskViewModel
+import com.skutilityplatforms.tasktracker.ui.screen.daily_tasks.DailyTasksScreen
+import com.skutilityplatforms.tasktracker.ui.screen.notes.NoteScreen
+import com.skutilityplatforms.tasktracker.ui.screen.notes.NotesViewModel
 import com.skutilityplatforms.tasktracker.ui.screen.task.TaskViewModel
 import com.skutilityplatforms.tasktracker.ui.screen.task.TasksScreen
 import com.skutilityplatforms.tasktracker.ui.screen.taskdetail.TaskDetailScreen
 import com.skutilityplatforms.tasktracker.ui.screen.taskdetail.TaskDetailViewModel
 
 @Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = ScreenNavigator.TaskScreen.name) {
+fun AppNavigation(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = ScreenNavigator.CurrentTaskScreen.name
+    ) {
 
-        composable(ScreenNavigator.TaskScreen.name) {
+        composable(ScreenNavigator.CurrentTaskScreen.name) {
             val viewModel: TaskViewModel = hiltViewModel()
             TasksScreen(navController = navController, viewModel = viewModel)
+        }
+
+        composable(ScreenNavigator.DailyTaskScreen.name) {
+            val viewModel: DailyTaskViewModel = hiltViewModel()
+            DailyTasksScreen(navController = navController, viewModel = viewModel)
+        }
+
+        composable(ScreenNavigator.NoteScreen.name) {
+            val viewModel: NotesViewModel = hiltViewModel()
+            NoteScreen(navController = navController, viewModel = viewModel)
         }
 
         composable(ScreenNavigator.AddTaskScreen.name) {
